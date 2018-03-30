@@ -1,2 +1,3 @@
-# requestbin.net
-The source code of http://requestbin.net
+# requestbin.net - The requestbin next-genaration
+
+## Information

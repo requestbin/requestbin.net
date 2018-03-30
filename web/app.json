@@ -1,0 +1,17 @@
+{
+  "name": "requestbin",
+  "description": "Inspect HTTP requests. Debug webhooks.",
+  "website": "http://requestb.in/",
+  "repository": "https://github.com/Runscope/requestbin",
+  "logo": "http://requestb.in/static/img/logo-2x.png",
+  "keywords": ["python"],
+  "env": {
+    "REALM": {
+      "description": "The number of processes to run.",
+      "value": "prod"
+    }
+  },
+  "addons": [
+    "heroku-redis"
+  ]
+}

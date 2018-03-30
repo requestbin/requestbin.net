@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block head %}
+    <style type="text/css">
+      .content p { font-size: larger; }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="page-header">
+      <h1>{{title}}<h1>
+    </div>
+    {{content|safe}}
+{% endblock %}
