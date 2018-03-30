@@ -9,7 +9,7 @@
 
 **Repository:** https://github.com/mxcxvn/requestbin.net
 
-**Blog:** 
+**Blog:** https://blog.fosec.vn/dns-data-exfiltration-what-is-this-and-how-to-use-2f6c69998822
 
 ## Release notes
 **Release date:** 30 Mar 2018
