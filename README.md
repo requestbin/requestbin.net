@@ -1,4 +1,4 @@
-# requestbin.net - The requestbin next genaration
+# requestbin.net - The requestbin next generation
 
 ## Information
 **Project:** requestbin.net
