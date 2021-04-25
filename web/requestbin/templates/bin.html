@@ -55,7 +55,7 @@
       <h4>Make a request to get started.</h4>
 
       <h5>cURL</h5>
-      <pre>curl -X POST -d "fizz=buzz" {{base_url}}/{{bin.name}}</pre>
+      <pre>curl -X POST -d "fizz=buzz" -L {{base_url}}/{{bin.name}}</pre>
 
       <h5>PowerShell</h5>
       <pre>powershell -NoLogo -Command "(New-Object System.Net.WebClient).DownloadFile('{{base_url}}/{{bin.name}}', 'C:\Windows\Temp\{{bin.name}}.txt')"</pre>
