@@ -1,36 +1,29 @@
-# requestbin.net - The requestbin next generation
+# requestbin.net - The Next-Gen RequestBin
 
 ## Information
 **Project:** requestbin.net
 
-**Demo:** http://requestbin.net
+**Demo:** https://requestbin.net
 
-**Author:** mxcxvn@gmail.com
+**Author:** cuongmx@gmail.com
 
-**Repository:** https://github.com/mxcxvn/requestbin.net
+**Repository:** https://github.com/requestbin/requestbin.net
 
-**Blog:** https://blog.fosec.vn/dns-data-exfiltration-what-is-this-and-how-to-use-2f6c69998822
+**Blog:** https://requestbin.net/post/whats-new-in-the-next-gen-requestbin
 
 ## Release notes
-**Release date:** 30 Mar 2018
+**Release date:** 05 May 2022
 
-**Current verion:** 1.0
+**Current verion:** 2.0
 
 **Features:**
-
-1. Supporting HTTP requests inspection
-2. Supporting DNS resolution requests inspection
+1. Support both DNS and HTTP on an unique ID
+2. Support automatically storing the list of IDs
+3. Blog
 
 ## Installation
-Read more at:
 
-https://github.com/mxcxvn/requestbin.net/tree/master/dnsserver#readme
-
-https://github.com/mxcxvn/requestbin.net/tree/master/web#readme
 
 ## References:
-This project is based on 2 projects:
-
-https://github.com/Runscope/requestbin
-
-https://github.com/HoLyVieR/dnsbin
+- https://github.com/Runscope/requestbin
+- https://github.com/HoLyVieR/dnsbin

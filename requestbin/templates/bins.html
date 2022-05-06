@@ -1,0 +1,68 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Your bins | RequestBin | DNSBin {% endblock %} 
+
+{% block head %}
+    <script type="text/javascript">
+		$(function () {
+			// Loading
+			var bins = JSON.parse(localStorage.getItem("bins") || "[]");
+			recentbins = "";
+			for (const bin of bins) {
+				strTime = new Date(bin["createdTime"]);
+				strTime = strTime.toISOString();
+				recentbins = recentbins + `<li class=\"list-group-item-home\"><div class=\"row\"><div class=\"col-7\"><i class=\"fa-solid fa-angle-right pr-1\"></i><a href=\"/bins/view/${bin["binKey"]}\">${bin["binKey"]}</a></div><div class=\"col-5\"><i class=\"fa-solid fa-calendar-plus pr-1\"></i>${strTime}</div></div></li>`;
+			}
+
+			$('#recentBins').html(recentbins)
+		})
+
+		function createBin() {
+      $("#btncreate").hide();
+			$.ajax({'url': '/bins/new', 'type': 'POST', 
+			'data': {'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()},
+			'success': function(data) {
+					addtoListBins(data['binKey']);
+					window.location.href = "/bins/view/"+data['binKey'];
+			}
+			});
+		}
+
+		function addtoListBins(newBin) {
+			// Loading
+			var bins = JSON.parse(localStorage.getItem("bins") || "[]");
+			// Modifying
+			var bin = {
+				binKey: newBin,
+				createdTime: Date.now()
+			};
+			bins.push(bin);
+			// Saving
+			localStorage.setItem("bins", JSON.stringify(bins));
+		}
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="p-4">
+  <div class="bodybg rounded border-2 border-grey shadow container p-5">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <h3 class="text-left pr-4 pt-1 pl-4 text-light"><i class="fa-solid fa-clipboard-list pr-2"></i>YOUR BINS</h3>
+          <form class="form-inline">
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+            <p class="banner-button">
+            <a class="btn btn-primary" id="btncreate" onclick="createBin()"><i class="fa-solid fa-plus"></i>New</a>
+            </p>
+          </form>
+        </div>
+        <hr>
+        <pre>This list is based on your bins created on this device.</pre>
+        <ul id="recentBins" class="list-group list-group-flush">
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

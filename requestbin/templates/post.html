@@ -1,0 +1,18 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{post.title}}{% endblock %} 
+
+{% block content %}
+<div class="p-4">
+  <div class="bodybg rounded border-2 border-grey shadow p-5 content-page">
+    <div class="card">
+      <div class="card-body post-page">
+        <h3>{{post.title}}</h3>
+        <i class="fa-solid fa-calendar-plus pr-1"></i>{{post.date}}
+        <hr>
+        {{post.content|safe}}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

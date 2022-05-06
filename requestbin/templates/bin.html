@@ -1,0 +1,258 @@
+{% extends "layouts/base.html" %}
+{% block title %}RequestBin - {{bin.binID}}{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<script>
+  $(function () {
+    $('#btn-copybin').tooltip()
+  })
+
+  function copybin(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+    $('#btn-copybin').attr('data-original-title', 'Copied').tooltip('show');
+    $('#btn-copybin').attr('data-original-title', 'Click to copy');
+}
+</script>
+<div class="p-4">
+<div class="bodybg rounded border-2 border-grey shadow container px-5 pt-5 pb-4">
+	<h4 class="card-title second-text-color"><i class="fa-solid fa-square-caret-right pr-2"></i>YOUR BIN</h4>
+	<hr class="card-hr">
+  <div>
+    <span class="h5" id="bintext">{{bin.binID}}.b.{{base_url}}</span>
+    <a class="btn-img text-blue-dark rounded mr-qr pt-2" id="btn-copybin" onclick="copybin('#bintext')" data-toggle="tooltip" data-placement="right" title="" data-original-title="Click to copy">
+      <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 48 48">
+        <g fill="none" fill-rule="evenodd">
+          <path d="M0 0h24v24H0z"></path>
+          <path fill="currentColor" d="M12.5 3H5c-1.1 0-2 .9-2 2v7.5a.5.5 0 00.5.5h1a.5.5 0 00.5-.5V5h7.5a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5zm5.633 4H8.867C7.84 7 7 7.9 7 9v9c0 1.1.84 2 1.867 2h9.266C19.16 20 20 19.1 20 18V9c0-1.1-.84-2-1.867-2zM18 18H9V9h9v9z"></path>
+        </g>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <div class="row pt-2">
+      <div class="col-sm-1 font-weight-bold">Supported:</div>
+      <div class="col-9">DNS, HTTP</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1 font-weight-bold">Created:</div>
+      <div class="col-9">{{bin.created|exact_time}}</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1 font-weight-bold">Last:</div>
+      <div class="col-9">{{bin.lasttime|exact_time}}</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1 font-weight-bold">Count:</div>
+      <div class="col-9">{{bin.request_count}}</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1 font-weight-bold">Status:</div>
+      <div class="col-9">{{bin.status}} </div>
+    </div>
+  </div>
+  <div class="panel panel-default pt-3">
+    <div id="Tabs" role="tabpanel">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li><a href="#curl" class="active" aria-controls="curl" role="tab" data-toggle="tab">curl</a></li>
+            <li><a href="#dns" aria-controls="dns" role="tab" data-toggle="tab">DNS Check</a></li>
+            <li><a href="#powershell" aria-controls="powershell" role="tab" data-toggle="tab">PowerShell</a></li>
+            <li><a href="#python" aria-controls="python" role="tab" data-toggle="tab">Python (with Requests)</a></li>
+            <li><a href="#node" aria-controls="node" role="tab" data-toggle="tab">Node.js (with request)</a></li>
+            <li><a href="#ruby" aria-controls="ruby" role="tab" data-toggle="tab">Ruby</a></li>
+            <li><a href="#net" aria-controls="net" role="tab" data-toggle="tab">C# / .NET</a></li>
+            <li><a href="#java" aria-controls="java" role="tab" data-toggle="tab">Java</a></li>
+            <li><a href="#php" aria-controls="php" role="tab" data-toggle="tab">PHP</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="curl">
+              <pre>curl -X POST -d "fizz=buzz" dnsdatacheck.{{bin.binID}}.b.{{base_url}}</pre>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="dns">
+              <pre>nslookup mydatahere.{{bin.binID}}.b.{{base_url}}</pre>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="powershell">
+              <pre>powershell -NoLogo -Command "(New-Object System.Net.WebClient).DownloadFile('{{bin.binID}}.b.{{base_url}}', 'C:\Windows\Temp\{{bin.binID}}.txt')"</pre>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="python">
+              <pre class="prettyprint">import requests, time
+                r = requests.post('{{bin.binID}}.b.{{base_url}}', data={"ts":time.time()})
+                print r.status_code
+                print r.content</pre>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="node">
+              <pre class="prettyprint">var request = require('request');
+                var url ='{{bin.binID}}.b.{{base_url}}'
+                request(url, function (error, response, body) {
+                  if (!error) {
+                    console.log(body);
+                  }
+                });</pre>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="ruby">
+              <pre class="prettyprint">require 'open-uri'
+                result = open('{{bin.binID}}.b.{{base_url}}')
+                result.lines { |f| f.each_line {|line| p line} }</pre>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="net">
+              <pre class="prettyprint">using System;
+                using System.Net.Http;
+                using System.Threading.Tasks;
+                
+                namespace RequestBinExample
+                {
+                  class Program
+                  {
+                    static void Main(string[] args)
+                    {
+                      MakeRequest();
+                    }
+                
+                    private static async Task MakeRequest()
+                    {
+                      var httpClient = new HttpClient();
+                      var response = await httpClient.GetAsync(new Uri("{{bin.binID}}.b.{{base_url}}"));
+                      var body = await response.Content.ReadAsStringAsync();
+                      Console.WriteLine(body);
+                    }
+                  }
+                }</pre>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="java">
+              <pre class="prettyprint">import org.apache.commons.httpclient.*;
+                import org.apache.commons.httpclient.methods.*;
+                import org.apache.commons.httpclient.params.HttpMethodParams;
+                
+                import java.io.*;
+                
+                public class RequestBinTutorial {
+                  public static void main(String[] args) {
+                    HttpClient client = new HttpClient();
+                    GetMethod method = new GetMethod("{{bin.binID}}.b.{{base_url}}");
+                    try {
+                      int statusCode = client.executeMethod(method);
+                      byte[] responseBody = method.getResponseBody();
+                      System.out.println(new String(responseBody));
+                    } catch (Exception e) {
+                      System.err.println("Fatal error: " + e.getMessage());
+                      e.printStackTrace();
+                    } finally {
+                      method.releaseConnection();
+                    }
+                  }
+                }</pre>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="php">
+              <pre class="prettyprint">&lt;?php
+                $result = file_get_contents('{{base_url}}/ip');
+                echo $result;
+                ?&gt;</pre>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+  {% for request in bin.requests %}
+    <div class="bodybg rounded border-2 border-grey container mt-4 mb-4" id="message-wrapper-{{request.id}}">
+      <div class="message-list">
+        <div class="row">
+          {% if request.type == "http" %}
+          <span class="badge badge-primary ml-3"><h4 class="text-light align-items-center pt-1">HTTP</h4></span>
+            <div class="col-sm-4">
+              {{request.base_url}}<br>
+              <span class="method">{{request.method}}</span> 
+              <span class="absolute-path">{{request.path}}</span><span class="querystring">{{request.query_string|to_qs}}</span>
+            </div>
+            <div class="col-6 content">
+              {% if request.content_type %}<i class="icon-code"></i>{% endif %} {{request.content_type}}<br>
+              <i class="fa-solid fa-cloud-arrow-up pr-2"></i> {{request.content_length|friendly_size}}
+            </div>
+            <div class="col" class="timestamp">
+              <span title="{{request.time|exact_time}}">{{request.time|approximate_time}} ago
+                <a href="#{{request.id}}" class="text-white"><i class="fa-solid fa-link pr-2"></i></a>
+              </span><br>
+              From {{request.remote_addr.replace(', 162.158.58.201','').replace(', 162.158.58.205','')}}
+            </div>
+          {% elif request.type == "dns" %}
+            <span class="badge badge-primary ml-3"><h4 class="text-light align-items-center pt-1">DNS</h4></span>
+            <div class="col-sm-4">
+              {{request.base_dns}}<br>
+            </div>
+            <div class="col-6 content">
+              <i class="fa-solid fa-cloud-arrow-up pr-2"></i>{% if request.data == "None" %}0{%else%}{{request.data|length}}{% endif %}
+            </div>
+            <div class="col" class="timestamp">
+              <span title="{{request.time|exact_time}}">{{request.time|approximate_time}} ago
+                <a href="#{{request.id}}" class="text-white"><i class="fa-solid fa-link pr-2"></i></a>
+              </span><br>
+              From {{request.remote_addr}}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div id="detail-{{request.id}}" class="message-detail">
+        {% if request.type == "http" %}
+          {{ message_detail(request) }}
+        {% elif request.type == "dns" %}
+          <div id="request-detail-{{request.id}}" class="p-4">
+            <div class="row">
+              <div class="col-sm-4">
+                <h5>DATA</h5>
+                {{request.data}}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
+
+{% macro message_detail(request) %}
+<div id="request-detail-{{request.id}}" class="p-4">
+    <div class="row">
+      <div class="col-sm-4">
+        <h5>FORM/POST PARAMETERS</h5>
+        {% for k,v in request.form_data %}
+          <p class="keypair"><strong>{{k}}:</strong> {{v}}</p>
+        {% else %}
+          <em>None</em>
+        {% endfor %}
+
+        {% if request.query_string and not request.query_string is string %}
+          <hr>
+          <h5>QUERYSTRING</h5>
+          {% for k,v in request.query_string|dictsort: %}
+            {% if not v %}
+              <p class="keypair"><strong>{{k}}</strong></p>
+            {% else %}
+              <p class="keypair"><strong>{{k}}:</strong> {{v}}</p>
+            {% endif %}
+          {% endfor %} 
+        {% endif %}
+      </div>
+      <div class="col">
+        {% if request.headers %}
+          <h5>HEADERS</h5>
+            {% for header in request.headers.items() %}
+              <p class="keypair"><strong>{{header.0}}:</strong> {{header.1|escape}}</p>
+            {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <hr>
+    <h5>RAW BODY</h5>
+    <div class="request-body" data-id="{{ request.id }}">
+    <pre class="body prettyprint">{%if request.raw%}{{request.raw}}{%else%}<em>None</em>{%endif%}</pre>
+  </div>
+</div>
+{% endmacro %}

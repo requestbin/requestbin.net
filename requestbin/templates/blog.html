@@ -1,0 +1,40 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} RequestBin Blog {% endblock %} 
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+<div class="p-4">
+  <div class="bodybg rounded border-2 border-grey shadow container p-5">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="text-left text-light pl-3"><i class="fa-solid fa-newspaper pr-2"></i>REQUESTBIN BLOG</h3>
+        <hr>
+        <section class="py-3">
+          <div class="container">
+            <div class="row">
+              {% for post in posts %}
+              <div class="col-md-6 col-xl-4 mb-4">
+                <div class="image-box image-box--shadowed white-bg style-2 mb-4">
+                  <div class="overlay-container">
+                    
+                    <a href="/post/{{post.id}}" class="overlay-link"><img src="{{post.thumb}}" alt=""></a>
+                  </div>
+                  <div class="body">
+                    <a href="/post/{{post.id}}"><h5 class="font-weight-bold my-2">{{post.title}}</h5></a>
+                    <p class="small"><i class="fa-solid fa-calendar-plus pr-1"></i>{{post.date}}</p>
+                  </div>
+                </div>
+              </div>
+              {%endfor%}
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} RequestBin - The next generation {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block head %}
+    <script type="text/javascript">
+		$(function () {
+			// Loading
+			var bins = JSON.parse(localStorage.getItem("bins") || "[]");
+			recentbins = "";
+			i = 0;
+			for (const bin of bins) {
+				i = i + 1;
+				if (i > 5) break;
+				strTime = new Date(bin["createdTime"]);
+				strTime = strTime.toISOString();
+				recentbins = recentbins + `<li class=\"list-group-item-home\"><a href=\"/bins/view/${bin["binKey"]}\">${bin["binKey"]}</a><pre><i class=\"fa-solid fa-calendar-plus pr-1\"></i>${strTime}</pre></li>`;
+			}
+
+			$('#recentBins').html(recentbins)
+		})
+
+		function createBin() {
+			$("#btncreate").hide();
+			$.ajax({'url': '/bins/new', 'type': 'POST', 
+			'data': {'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()},
+			'success': function(data) {
+					addtoListBins(data['binKey']);
+					window.location.href = "/bins/view/"+data['binKey'];
+			}
+			});
+		}
+
+		function addtoListBins(newBin) {
+			// Loading
+			var bins = JSON.parse(localStorage.getItem("bins") || "[]");
+			// Modifying
+			var bin = {
+				binKey: newBin,
+				createdTime: Date.now()
+			};
+			bins.push(bin);
+			// Saving
+			localStorage.setItem("bins", JSON.stringify(bins));
+		}
+    </script>
+{% endblock %}
+
+{% block content %}
+	<div class="jumbotron jumbotron-fluid homeheaderbg">
+		<div class="container">
+			<h1 class="text-light">The Next-Gen Inspection Requests</h1>
+			<p><h3 class="text-light">A subdomain is provided to you that will collect requests made to it and let you inspect them in a human-friendly way in both of DNS and HTTP protocol.</h3></p>
+			<p><h3 class="text-light">RequestBin help to see what your client is sending or to inspect and debug webhook requests.</h3>
+			<form class="form-inline pt-3">
+				<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+				<p class="banner-button">
+				<a class="btn btn-primary btn-large" id="btncreate" onclick="createBin()"><i class="fa-solid fa-plus"></i>Create a RequestBin</a>
+				</p>
+			</form>
+			<h5>The old version of RequestBin is keeping <a href="https://v1.requestbin.net">here</a></h5>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+		<div class="col-sm-4">
+			<div class="card">
+			<div class="card-body">
+				<h5 class="card-title"><i class="fa-solid fa-newspaper pr-2"></i><a href="/blog">Blog</a></h5>
+				<hr class="card-hr"/>
+
+				<ul class="list-group list-group-flush">
+					{% for post in posts %}
+					<li class="list-group-item-home">
+						<a href="/post/{{post.id}}">{{post.title}}</a>
+						<pre><i class="fa-solid fa-calendar-plus pr-1"></i>{{post.date}}</pre>
+					</li>
+					{%endfor%}
+				</ul>
+
+			</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="card">
+			<div class="card-body">
+				<h5 class="card-title"><i class="fa-solid fa-clock-rotate-left pr-2"></i><a href="/bins">Your Bins</a></h5>
+				<hr class="card-hr"/>
+				<ul id="recentBins" class="list-group list-group-flush">
+				</ul>
+			</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="card">
+			<div class="card-body">
+				<h5 class="card-title"><i class="fa-solid fa-address-card pr-2"></i><a href="/about">Contact</a></h5>
+				<hr class="card-hr"/>
+				<p><i class="fab fa-facebook-square pr-2"></i> <a href="https://www.facebook.com/requestbin/">https://www.facebook.com/requestbin/</a></p>
+				<p><i class="fab fa-twitter-square pr-2"></i> <a href="https://twitter.com/RequestbinNet">https://twitter.com/RequestbinNet</a></p>
+				<p><i class="fa-brands fa-github pr-2"></i> <a href="https://github.com/requestbin">https://github.com/requestbin</a></p>
+				<p><i class="fas fa-envelope-square pr-2"></i> <a href="mailto:requestbin.net@gmail.com">requestbin.net@gmail.com</a></p>
+			</div>
+			</div>
+		</div>
+		</div>
+	</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

@@ -1,0 +1,15 @@
+{
+  "name": "requestbin",
+  "description": "Inspect HTTP requests. Debug webhooks.",
+  "website": "https://requestbin.net/",
+  "repository": "https://github.com/requestbin/requestbin.net",
+  "logo": "https://requestbin.net/static/assets/images/favicon.png",
+  "keywords": ["python"],
+  "env": {
+    "REALM": {
+      "description": "The number of processes to run.",
+      "value": "prod"
+    }
+  },
+  "addons": [ ]
+}

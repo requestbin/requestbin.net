@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export MONGODB_URI=mongodb+srv://xxx
+export SQLLITE=dnsdb.lite
+export CNAME=dry-arxxxxxxxxxxxxx.herokudns.com
+WORK_PATH=/xx
+cd $WORK_PATH
+python3 dnsbin.py --port 8853 --udp --tcp
