@@ -25,6 +25,7 @@
 
 		function createBin() {
 			$("#btncreate").hide();
+			$("#btncreateloading").show();
 			$.ajax({'url': '/bins/new', 'type': 'POST', 
 			'data': {'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()},
 			'success': function(data) {
@@ -58,8 +59,9 @@
 			<form class="form-inline pt-3">
 				<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 				<p class="banner-button">
-				<a class="btn btn-primary btn-large" id="btncreate" onclick="createBin()"><i class="fa-solid fa-plus"></i>Create a RequestBin</a>
+					<a class="btn btn-primary btn-large" id="btncreate" onclick="createBin()"><i class="fa-solid fa-plus"></i>Create a RequestBin</a>
 				</p>
+				<div class="lds-ellipsis" style="display:none" id="btncreateloading"><div></div><div></div><div></div><div></div></div>
 			</form>
 			<h5>The old version of RequestBin is keeping <a href="https://v1.requestbin.net">here</a></h5>
 		</div>

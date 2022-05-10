@@ -18,12 +18,13 @@
 		})
 
 		function createBin() {
-      $("#btncreate").hide();
+      		$("#btncreate").hide();
+			$("#btncreateloading").show();
 			$.ajax({'url': '/bins/new', 'type': 'POST', 
 			'data': {'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()},
 			'success': function(data) {
-					addtoListBins(data['binKey']);
-					window.location.href = "/bins/view/"+data['binKey'];
+				addtoListBins(data['binKey']);
+				window.location.href = "/bins/view/"+data['binKey'];
 			}
 			});
 		}
@@ -53,8 +54,9 @@
           <form class="form-inline">
             <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
             <p class="banner-button">
-            <a class="btn btn-primary" id="btncreate" onclick="createBin()"><i class="fa-solid fa-plus"></i>New</a>
+            	<a class="btn btn-primary" id="btncreate" onclick="createBin()"><i class="fa-solid fa-plus"></i>New</a>
             </p>
+			<div class="lds-ellipsis" style="display:none" id="btncreateloading"><div></div><div></div><div></div><div></div></div>
           </form>
         </div>
         <hr>
