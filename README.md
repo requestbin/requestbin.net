@@ -22,7 +22,21 @@
 3. Blog
 
 ## Installation
+### Pre-installation Requirements
+To install an instance like requestbin.net, you need some bellow things:
+1. A domain with full DNS control
+2. A Heroku account
+3. A VPS run linux server
+4. A mongodb server
 
+There are 3 parts in a requestbin.net system:
+1. Main website run on Heroku
+2. DNS server for DNSBin
+3. Blog
+
+### 1. Setup website on Heroku
+### 2. Setup DNS Server
+### 3. Setup Blog
 
 ## References:
 - https://github.com/Runscope/requestbin
