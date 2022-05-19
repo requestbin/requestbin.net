@@ -26,32 +26,9 @@ MAX_REQUESTS = 50
 CLEANUP_INTERVAL = 3600
 RATELIMIT_REQUEST = 15
 
-# REDIS_URL = ""
-# REDIS_HOST = "localhost"
-# REDIS_PORT = 6379
-# REDIS_PASSWORD = None
-# REDIS_DB = 9
-
 REDIS_PREFIX = "requestbinnet"
 
 BUGSNAG_KEY = ""
-
-# if REALM == 'prod':
-#     DEBUG = False
-#     ROOT_URL = "http://requestbin.net"
-
-#     FLASK_SESSION_SECRET_KEY = os.environ.get("SESSION_SECRET_KEY", FLASK_SESSION_SECRET_KEY)
-
-#     STORAGE_BACKEND = "requestbin.storage.redis.RedisStorage"
-
-#     REDIS_URL = os.environ.get("REDIS_URL")
-#     # url_parts = urlparse.urlparse(REDIS_URL)
-#     # REDIS_HOST = url_parts.hostname
-#     # REDIS_PORT = url_parts.port
-#     # REDIS_PASSWORD = url_parts.password
-#     # REDIS_DB = url_parts.fragment
-
-#     BUGSNAG_KEY = os.environ.get("BUGSNAG_KEY", BUGSNAG_KEY)
 
 IGNORE_HEADERS = """
     X-Varnish
