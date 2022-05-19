@@ -35,6 +35,26 @@ There are 3 parts in a requestbin.net system:
 3. Blog
 
 ### 1. Setup website on Heroku
+First, clone this repo using git:
+
+`$ git clone https://github.com/requestbin/requestbin.net.git`
+
+From the project directory, create a Heroku application:
+
+`$ heroku create`
+
+Set an environment variable to indicate production:
+
+`$ heroku config:set SERVER_NAME=requestbin.net`
+
+`$ heroku config:set MONGODB_URI=mongodb://user:Passsword@exampleserver:port/db?retryWrites=true`
+
+Now just deploy via git:
+
+`$ git push heroku master`
+
+It will push to Heroku and give you a URL that your own private RequestBin will be running.
+
 ### 2. Setup DNS Server
 ### 3. Setup Blog
 
