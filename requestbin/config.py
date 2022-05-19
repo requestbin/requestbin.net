@@ -1,6 +1,6 @@
 import os
 from urllib.parse import urlparse
-from util import get_random_string
+from requestbin.util import get_random_string
 
 DEBUG = False
 REALM = os.environ.get('REALM', 'prod')
@@ -45,11 +45,11 @@ if REALM == 'prod':
     STORAGE_BACKEND = "requestbin.storage.redis.RedisStorage"
 
     REDIS_URL = os.environ.get("REDIS_URL")
-    url_parts = urlparse.urlparse(REDIS_URL)
-    REDIS_HOST = url_parts.hostname
-    REDIS_PORT = url_parts.port
-    REDIS_PASSWORD = url_parts.password
-    REDIS_DB = url_parts.fragment
+    # url_parts = urlparse.urlparse(REDIS_URL)
+    # REDIS_HOST = url_parts.hostname
+    # REDIS_PORT = url_parts.port
+    # REDIS_PASSWORD = url_parts.password
+    # REDIS_DB = url_parts.fragment
 
     BUGSNAG_KEY = os.environ.get("BUGSNAG_KEY", BUGSNAG_KEY)
 
