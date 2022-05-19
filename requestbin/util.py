@@ -25,3 +25,9 @@ def genKey(str1, str2):
     str = "%s%s" % (str1, str2)
     hash_object = hashlib.sha1(str.encode())
     return hash_object.hexdigest()
+
+def get_random_string(length):
+    # Random string with the combination of lower and upper case
+    letters = string.ascii_letters
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    return result_str

@@ -1,18 +1,20 @@
 import os
 from urllib.parse import urlparse
+from util import get_random_string
+
 DEBUG = False
-REALM = os.environ.get('REALM', 'local')
+REALM = os.environ.get('REALM', 'prod')
 
 ROOT_URL = "http://localhost:4000"
 
-SERVER_NAME = "requestbin.net"
+SERVER_NAME = os.environ.get("SERVER_NAME", "requestbin.net")
 
 PORT_NUMBER = 4000
 
 ENABLE_CORS = False
 CORS_ORIGINS = "*"
 
-FLASK_SESSION_SECRET_KEY = os.environ.get("SESSION_SECRET_KEY", "xxxxxxxxxxx")
+FLASK_SESSION_SECRET_KEY = os.environ.get("SESSION_SECRET_KEY", get_random_string(32))
 
 BIN_TTL = 48*3600
 #STORAGE_BACKEND = "requestbin.storage.memory.MemoryStorage"
