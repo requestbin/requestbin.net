@@ -2,6 +2,7 @@
 
 export MONGODB_URI=mongodb://xx:xxx@1xxx:xx/xx?retryWrites=true
 export LOG_LEVEL=DEBUG
+export BLOG_REPO=XXX
 WORK_PATH=/xx/xx
 cd $WORK_PATH
 python3 blogsync.py
