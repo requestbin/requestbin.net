@@ -72,6 +72,11 @@ def ip():
 def ads():
     return make_response("google.com, pub-7093275067786161, DIRECT, f08c47fec0942fa0")
 
+# redirect request of old version
+@app.route("/r/<string:param>")
+def oldR(param):
+    return redirect('/')
+
 @app.route("/blog")
 def blog():
     lstPosts = db.getListPosts()

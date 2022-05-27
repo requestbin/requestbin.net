@@ -19,7 +19,7 @@
 				strTime = strTime.toISOString();
 				recentbins = recentbins + `<li class=\"list-group-item-home\"><a href=\"/bins/view/${bin["binKey"]}\">${bin["binKey"]}</a><pre><i class=\"fa-solid fa-calendar-plus pr-1\"></i>${strTime}</pre></li>`;
 			}
-			if (i > 4) {
+			if (i > 2) {
 				$("#adsRecentBins").hide();
 				$("#adsAbout").show();				
 			}
