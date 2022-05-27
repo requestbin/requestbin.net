@@ -68,6 +68,10 @@ def ip():
     resp.headers['Sponsored-By'] = "http://requestbin.net"
     return resp
 
+@app.route("/ads.txt")
+def ads():
+    return make_response("google.com, pub-7093275067786161, DIRECT, f08c47fec0942fa0")
+
 @app.route("/blog")
 def blog():
     lstPosts = db.getListPosts()
