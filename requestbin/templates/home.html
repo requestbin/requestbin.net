@@ -14,12 +14,15 @@
 			i = 0;
 			for (const bin of bins) {
 				i = i + 1;
-				if (i > 5) break;
+				if (i > 7) break;
 				strTime = new Date(bin["createdTime"]);
 				strTime = strTime.toISOString();
 				recentbins = recentbins + `<li class=\"list-group-item-home\"><a href=\"/bins/view/${bin["binKey"]}\">${bin["binKey"]}</a><pre><i class=\"fa-solid fa-calendar-plus pr-1\"></i>${strTime}</pre></li>`;
 			}
-
+			if (i > 4) {
+				$("#adsRecentBins").hide();
+				$("#adsAbout").show();				
+			}
 			$('#recentBins').html(recentbins)
 		})
 
@@ -96,9 +99,9 @@
 					</ul>
 				</div>
 			</div>
-			<div class="card">
+			<div class="card" id="adsRecentBins">
 				<div class="card-body">
-					<h5 class="card-title"><i class="fa-solid fa-clock-rotate-left pr-2"></i>ADS</h5>
+					<h5 class="card-title"><i class="fa-brands fa-buysellads pr-2"></i>Advertisement</h5>
 					<hr class="card-hr"/>
 					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7093275067786161"
 						crossorigin="anonymous"></script>
@@ -116,15 +119,30 @@
 			</div>
 		</div>
 		<div class="col-sm-4">
-			<div class="card">
-			<div class="card-body">
-				<h5 class="card-title"><i class="fa-solid fa-address-card pr-2"></i><a href="/about">Contact</a></h5>
-				<hr class="card-hr"/>
-				<p><i class="fab fa-facebook-square pr-2"></i> <a href="https://www.facebook.com/requestbin/">https://www.facebook.com/requestbin/</a></p>
-				<p><i class="fab fa-twitter-square pr-2"></i> <a href="https://twitter.com/RequestbinNet">https://twitter.com/RequestbinNet</a></p>
-				<p><i class="fa-brands fa-github pr-2"></i> <a href="https://github.com/requestbin">https://github.com/requestbin</a></p>
-				<p><i class="fas fa-envelope-square pr-2"></i> <a href="mailto:requestbin.net@gmail.com">requestbin.net@gmail.com</a></p>
+			<div class="card" id="adsAbout" style="display:none">
+				<div class="card-body">
+					<h5 class="card-title"><i class="fa-brands fa-buysellads pr-2"></i>Advertisement</h5>
+					<hr class="card-hr"/>
+					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7093275067786161"
+						crossorigin="anonymous"></script>
+					<!-- RequestBin Home -->
+					<ins class="adsbygoogle"
+						style="display:block"
+						data-ad-client="ca-pub-7093275067786161"
+						data-ad-slot="2802856145"
+						data-ad-format="auto"
+						data-full-width-responsive="true"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
 			</div>
+			<div class="card">
+				<div class="card-body pb-2 pt-4">
+					<p><i class="fab fa-twitter-square pr-2"></i> <a href="https://twitter.com/RequestbinNet">https://twitter.com/RequestbinNet</a></p>
+					<p><i class="fa-brands fa-github pr-2"></i> <a href="https://github.com/requestbin">https://github.com/requestbin</a></p>
+					<p><i class="fas fa-envelope-square pr-2"></i> <a href="mailto:requestbin.net@gmail.com">requestbin.net@gmail.com</a></p>
+				</div>
 			</div>
 		</div>
 		</div>

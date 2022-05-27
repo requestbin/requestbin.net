@@ -6,7 +6,7 @@ from requestbin import app, db
 
 @app.route("/")
 def home():
-    lstPosts = db.getListPosts(5)
+    lstPosts = db.getListPosts(7)
     return render_template('home.html', posts = lstPosts)
 
 @app.route("/dns")
