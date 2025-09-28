@@ -1,5 +1,4 @@
-# requestbin.net - The Next-Gen RequestBin
-
+# requestbin.net - v2
 ## Information
 **Project:** requestbin.net
 
@@ -9,7 +8,39 @@
 
 **Repository:** https://github.com/requestbin/requestbin.net
 
-**Blog:** https://requestbin.net/post/whats-new-in-the-next-gen-requestbin
+## 📢 Project Status Update – August 2025
+
+First of all, thank you to everyone who has supported RequestBin v2.0 here on GitHub. This repository has been an important part of the developer community, and we deeply appreciate your contributions, feedback, and usage over the years.
+
+### 🔄 Transition to RequestBin v3.0
+
+We are excited to announce the release of [RequestBin v3.0](https://requestbin.net/), our biggest update since 2018.
+
+### ✨ What’s New in v3.0
+
+Zero-loss Cloud Migration: Seamlessly move existing bins with 100% data integrity.
+
+Smart Request Management: Mark read/unread requests, flag important ones, and filter with free text search.
+
+Custom OAST Servers: Add your own private OAST servers alongside the default global instance.
+
+Redesigned UI: Modern, responsive, and built for productivity.
+
+Enterprise Security: SSO, MFA, RBAC, audit logs, and GDPR compliance.
+
+### 👉 Full details here: [Introducing RequestBin v3.0](https://blog.requestbin.net/introducing-requestbin-v3-0-cloud-migration-revamped-ui-and-enterprise-grade-security/)
+
+### 💡 What About This Repository?
+
+v2.0 code will remain here as a reference for the community.
+
+Issues and discussions are welcome for v2.0 usage, but active development will continue only in v3.0.
+
+Developers interested in the latest features, cloud capabilities, and enterprise integrations are encouraged to check out the SaaS offering at requestbin.net
+
+### 🙏 Thank You, Community
+
+RequestBin wouldn’t exist without the open-source community. We remain committed to supporting developers and will continue sharing guides, tutorials, and best practices on [our blog](https://blog.requestbin.net/).
 
 ## Release notes
 **Release date:** 05 May 2022
